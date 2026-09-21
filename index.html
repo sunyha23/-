@@ -8,15 +8,10 @@
 
 <style>
 
-
-/* 기본 설정 */
-
 *{
 	margin:0;
 	padding:0;
 }
-
-/* 전체 장면 */
 
 #scene{
 	position:relative;
@@ -24,9 +19,6 @@
 	width:100vw;
 	height:100vh;
 }
-
-
-/* 호수 */
 
 #lake{
 	position:absolute;
@@ -37,9 +29,6 @@
 	object-fit:cover;
 }
 
-
-/* 햇빛 */
-
 #sun{
 	position:absolute;
 	width:35vw;
@@ -48,18 +37,12 @@
 	opacity:0;
 }
 
-
-/* 개구리 */
-
 #frog{
 	position:absolute;
 	width:14vw;
 	left:12%;
 	bottom:16%;
 }
-
-
-/* 반딧불이 */
 
 #bug{
 	position:absolute;
@@ -68,16 +51,12 @@
 	bottom:30%;
 }
 
-/* 독수리 */
-
 #eagle{
 	position:absolute;
 	width:18vw;
 	right:10%;
 	top:12%;
 }
-
-/* 비 오는 창문 */
 
 #rainWindow{
 	position:absolute;
@@ -92,8 +71,6 @@
 }
 
 
-/* 자동차 창문 */
-
 #frame{
 	position:absolute;
 	top:0;
@@ -104,8 +81,6 @@
 	pointer-events:none;
 }
 
-
-/* 시작 화면 */
 
 #startScreen{
 	position:fixed;
@@ -139,8 +114,6 @@
 	border:2px solid black;
 }
 
-/* 하단 버튼 */
-
 #sunButton,
 #engineButton,
 #radioButton{
@@ -155,8 +128,6 @@
 }
 
 
-/* 날씨 버튼 */
-
 #sunButton{
 	left:20px;
 	font-size:26px;
@@ -164,21 +135,14 @@
 }
 
 
-/* 엔진 버튼 */
-
 #engineButton{
 	right:72px;
 }
 
 
-/* 라디오 버튼 */
-
 #radioButton{
 	right:20px;
 }
-
-
-/* 버튼 이미지 */
 
 #engineButton img,
 #radioButton img{
@@ -194,8 +158,6 @@
 <body>
 
 
-<!-- 시작 화면 -->
-
 <div id="startScreen">
 
 	<div id="startBox">
@@ -210,8 +172,6 @@
 
 </div>
 
-<!-- 장면 -->
-
 <div id="scene">
 
 	<img src="lake.png" id="lake">
@@ -225,28 +185,20 @@
 </div>
 
 
-<!-- 날씨 버튼 -->
-
 <div id="sunButton">
 	☂
 </div>
 
-
-<!-- 엔진 버튼 -->
 
 <div id="engineButton">
 	<img src="carbutton.png">
 </div>
 
 
-<!-- 라디오 버튼 -->
-
 <div id="radioButton">
 	<img src="radio.png">
 </div>
 
-
-<!-- 소리 -->
 
 <audio src="frog.flac" id="frogsound" loop></audio>
 <audio src="rain.mp3" id="rainSound" loop></audio>
@@ -260,7 +212,6 @@
 <script>
 
 
-/* 볼륨 */
 frogsound.volume = 0.2;
 
 rainSound.volume = 0.5;
@@ -278,14 +229,12 @@ eagleSound.volume = 0.1;
 
 
 
-/* 시작 */
 startButton.onclick = function(){
 	startScreen.style.display = "none";
 	rainSound.play();
 	rainSound2.play();
 };
 
-/* 개구리 */
 let frogOn = "no";
 frog.onclick = function(){
 	if(frogOn == "no"){
@@ -300,7 +249,6 @@ frog.onclick = function(){
 	}
 };
 
-/* 반딧불이 */
 let bugOn = "no";
 bug.onclick = function(){
 	if(bugOn == "no"){
@@ -316,7 +264,6 @@ bug.onclick = function(){
 
 };
 
-/* 독수리 */
 let eagleOn = "no";
 eagle.onclick = function(){
 	if(eagleOn == "no"){
@@ -331,7 +278,6 @@ eagle.onclick = function(){
 	}
 };
 
-/* 날씨 */
 let sunny = "no";
 sunButton.onclick = function(){
 	if(sunny == "no"){
@@ -356,7 +302,6 @@ sunButton.onclick = function(){
 	}
 };
 
-/* 엔진 */
 let engineOn = "no";
 engineButton.onclick = function(){
 	if(engineOn == "no"){
@@ -372,7 +317,6 @@ engineButton.onclick = function(){
 	}
 };
 
-/* 라디오 */
 let radioOn = "no";
 let radioStarted = "no";
 radioButton.onclick = function(){
