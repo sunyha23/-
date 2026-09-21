@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<title>차박에이에스엠알</title>
+
+<style>
+
+
+/* 기본 설정 */
+
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	overflow:hidden;
+}
+
+
+/* 전체 장면 */
+
+#scene{
+	position:relative;
+
+	width:100vw;
+	height:100vh;
+}
+
+
+/* 호수 */
+
+#lake{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	object-fit:cover;
+}
+
+
+/* 햇빛 */
+
+#sun{
+	position:absolute;
+	width:35vw;
+	left:5%;
+	top:2%;
+	opacity:0;
+	transition:opacity 0.8s;
+}
+
+
+/* 개구리 */
+
+#frog{
+	position:absolute;
+	width:14vw;
+	left:12%;
+	bottom:16%;
+	transition:0.3s;
+	filter:
+		drop-shadow(1px 0 0 white)
+		drop-shadow(-1px 0 0 white)
+		drop-shadow(0 1px 0 white)
+		drop-shadow(0 -1px 0 white);
+}
+
+#frog:hover{
+	transform:scale(1.1);
+}
+
+
+/* 반딧불이 */
+
+#bug{
+	position:absolute;
+	width:5vw;
+	left:6%;
+	bottom:30%;
+	transition:0.3s;
+	filter:
+		drop-shadow(1px 0 0 white)
+		drop-shadow(-1px 0 0 white)
+		drop-shadow(0 1px 0 white)
+		drop-shadow(0 -1px 0 white);
+}
+
+#bug:hover{
+	transform:scale(1.1);
+}
+
+
+/* 독수리 */
+
+#eagle{
+	position:absolute;
+	width:18vw;
+	right:10%;
+	top:12%;
+	transition:0.3s;
+	filter:
+		drop-shadow(1px 0 0 white)
+		drop-shadow(-1px 0 0 white)
+		drop-shadow(0 1px 0 white)
+		drop-shadow(0 -1px 0 white);
+}
+
+#eagle:hover{
+	transform:scale(1.08);
+}
+
+
+/* 비 오는 창문 */
+
+#rainWindow{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	object-fit:cover;
+	opacity:0.7;
+	pointer-events:none;
+	transition:opacity 0.8s;
+}
+
+
+/* 자동차 창문 */
+
+#frame{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	object-fit:fill;
+	pointer-events:none;
+}
+
+
+/* 시작 화면 */
+
+#startScreen{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100vw;
+	height:100vh;
+	z-index:300;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+#startBox{
+	width:380px;
+	padding:30px;
+	background:white;
+	border:2px solid black;
+	text-align:center;
+	font-family:Arial, Helvetica, sans-serif;
+}
+
+#startBox p{
+	font-size:20px;
+	margin-bottom:30px;
+}
+
+#startButton{
+	padding:10px 24px;
+	background:white;
+	border:2px solid black;
+	color:black;
+	font-size:14px;
+	font-weight:700;
+}
+
+#startButton:hover{
+	background:black;
+	color:white;
+}
+
+
+/* 하단 버튼 */
+
+#sunButton,
+#engineButton,
+#radioButton{
+	position:fixed;
+	bottom:24px;
+	width:42px;
+	height:42px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	background:white;
+}
+
+
+/* 날씨 버튼 */
+
+#sunButton{
+	left:20px;
+	font-size:26px;
+	background:blue;
+}
+
+
+/* 엔진 버튼 */
+
+#engineButton{
+	right:72px;
+}
+
+
+/* 라디오 버튼 */
+
+#radioButton{
+	right:20px;
+}
+
+
+/* 버튼 이미지 */
+
+#engineButton img,
+#radioButton img{
+	width:48px;
+	height:48px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- 시작 화면 -->
+
+<div id="startScreen">
+
+	<div id="startBox">
+
+		<p>나만의 차박 에이에스엠알</p>
+
+		<button id="startButton">
+		시작
+		</button>
+
+	</div>
+
+</div>
+
+<!-- 장면 -->
+
+<div id="scene">
+
+	<img src="lake.png" id="lake">
+	<img src="sun.png" id="sun">
+	<img src="frog.png" id="frog">
+	<img src="bugoff.png" id="bug">
+	<img src="eagle.png" id="eagle">
+	<img src="rain.png" id="rainWindow">
+	<img src="car.png" id="frame">
+
+</div>
+
+
+<!-- 날씨 버튼 -->
+
+<div id="sunButton">
+	☂
+</div>
+
+
+<!-- 엔진 버튼 -->
+
+<div id="engineButton">
+	<img src="carbutton.png">
+</div>
+
+
+<!-- 라디오 버튼 -->
+
+<div id="radioButton">
+	<img src="radio.png">
+</div>
+
+
+<!-- 소리 -->
+
+<audio src="frog.flac" id="frogsound" loop></audio>
+<audio src="rain.mp3" id="rainSound" loop></audio>
+<audio src="carrain.mp3" id="rainSound2" loop></audio>
+<audio src="sunny.mp3" id="sunSound" loop></audio>
+<audio src="car.mp3" id="engineSound" loop></audio>
+<audio src="bug.mp3" id="bugSound" loop></audio>
+<audio src="radioreal.mp3" id="radioSound" loop></audio>
+<audio src="eagle.mp3" id="eagleSound" loop></audio>
+
+<script>
+
+
+/* 볼륨 */
+frogsound.volume = 0.2;
+
+rainSound.volume = 0.5;
+rainSound2.volume = 0.9;
+
+sunSound.volume = 0.9;
+
+engineSound.volume = 1.0;
+
+bugSound.volume = 1.0;
+
+radioSound.volume = 0.2;
+
+eagleSound.volume = 0.1;
+
+
+
+/* 시작 */
+startButton.onclick = function(){
+	startScreen.style.display = "none";
+	rainSound.play();
+	rainSound2.play();
+};
+
+/* 개구리 */
+let frogOn = "no";
+frog.onclick = function(){
+	if(frogOn == "no"){
+		frog.src = "cryfrog.png";
+		frogsound.play();
+		frogOn = "yes";
+	}else if(frogOn == "yes"){
+		frog.src = "frog.png";
+		frogsound.pause();
+		frogsound.currentTime = 0;
+		frogOn = "no";
+	}
+};
+
+/* 반딧불이 */
+let bugOn = "no";
+bug.onclick = function(){
+	if(bugOn == "no"){
+		bug.src = "bug.png";
+		bugSound.play();
+		bugOn = "yes";
+	}else if(bugOn == "yes"){
+		bug.src = "bugoff.png";
+		bugSound.pause();
+		bugSound.currentTime = 0;
+		bugOn = "no";
+	}
+
+};
+
+/* 독수리 */
+let eagleOn = "no";
+eagle.onclick = function(){
+	if(eagleOn == "no"){
+		eagle.src = "eagle_open.png";
+		eagleSound.play();
+		eagleOn = "yes";
+	}else if(eagleOn == "yes"){
+		eagle.src = "eagle.png";
+		eagleSound.pause();
+		eagleSound.currentTime = 0;
+		eagleOn = "no";
+	}
+};
+
+/* 날씨 */
+let sunny = "no";
+sunButton.onclick = function(){
+	if(sunny == "no"){
+		sun.style.opacity = "1";
+		rainWindow.style.opacity = "0";
+		rainSound.pause();
+		rainSound2.pause();
+		sunSound.play();
+		sunButton.innerHTML = "☀";
+		sunButton.style.background = "red";
+		sunny = "yes";
+	}else if(sunny == "yes"){
+		sun.style.opacity = "0.35";
+		sunSound.pause();
+		sunSound.currentTime = 0;
+		rainWindow.style.opacity = "0.7";
+		rainSound.play();
+		rainSound2.play();
+		sunButton.innerHTML = "☂";
+		sunButton.style.background = "blue";
+		sunny = "no";
+	}
+};
+
+/* 엔진 */
+let engineOn = "no";
+engineButton.onclick = function(){
+	if(engineOn == "no"){
+		engineSound.play();
+		engineButton.style.background = "green";
+		engineOn = "yes";
+
+	}else if(engineOn == "yes"){
+		engineSound.pause();
+		engineSound.currentTime = 0;
+		engineButton.style.background = "white";
+		engineOn = "no";
+	}
+};
+
+/* 라디오 */
+let radioOn = "no";
+let radioStarted = "no";
+radioButton.onclick = function(){
+	if(radioOn == "no"){
+		if(radioStarted == "no"){
+			radioSound.currentTime = 15;
+			radioStarted = "yes";
+		}
+		radioSound.play();
+		radioButton.style.background = "yellow";
+		radioOn = "yes";
+
+	}else if(radioOn == "yes"){
+		radioSound.pause();
+		radioButton.style.background = "white";
+		radioOn = "no";
+	}
+};
+
+
+</script>
+
+</body>
+
+</html>
