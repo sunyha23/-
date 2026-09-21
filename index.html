@@ -15,7 +15,6 @@
 
 #scene{
 	position:relative;
-
 	width:100vw;
 	height:100vh;
 }
@@ -67,9 +66,7 @@
 	object-fit:cover;
 	opacity:0.7;
 	pointer-events:none;
-	transition:opacity 0.8s;
 }
-
 
 #frame{
 	position:absolute;
@@ -81,37 +78,12 @@
 	pointer-events:none;
 }
 
-
-#startScreen{
-	position:fixed;
-	top:0;
-	left:0;
-	width:100vw;
-	height:100vh;
-	z-index:300;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-}
-
-#startBox{
-	width:380px;
-	padding:30px;
-	background:white;
-	border:2px solid black;
-	text-align:center;
-	font-family:Arial, Helvetica, sans-serif;
-}
-
-#startBox p{
-	font-size:20px;
-	margin-bottom:30px;
-}
-
-#startButton{
-	padding:10px 24px;
-	background:white;
-	border:2px solid black;
+#title{
+	position:absolute;
+	top:20px;
+	left:20px;
+	color:white;
+	font-size:24px;
 }
 
 #sunButton,
@@ -121,24 +93,19 @@
 	bottom:24px;
 	width:42px;
 	height:42px;
-	display:flex;
-	justify-content:center;
-	align-items:center;
 	background:white;
 }
-
 
 #sunButton{
 	left:20px;
 	font-size:26px;
+	text-align:center;
 	background:blue;
 }
-
 
 #engineButton{
 	right:72px;
 }
-
 
 #radioButton{
 	right:20px;
@@ -146,8 +113,8 @@
 
 #engineButton img,
 #radioButton img{
-	width:48px;
-	height:48px;
+	width:42px;
+	height:42px;
 }
 
 </style>
@@ -158,22 +125,7 @@
 <body>
 
 
-<div id="startScreen">
-
-	<div id="startBox">
-
-		<p>나만의 차박 에이에스엠알</p>
-
-		<button id="startButton">
-		시작
-		</button>
-
-	</div>
-
-</div>
-
 <div id="scene">
-
 	<img src="lake.png" id="lake">
 	<img src="sun.png" id="sun">
 	<img src="frog.png" id="frog">
@@ -181,7 +133,6 @@
 	<img src="eagle.png" id="eagle">
 	<img src="rain.png" id="rainWindow">
 	<img src="car.png" id="frame">
-
 </div>
 
 
@@ -198,8 +149,6 @@
 <div id="radioButton">
 	<img src="radio.png">
 </div>
-
-
 <audio src="frog.flac" id="frogsound" loop></audio>
 <audio src="rain.mp3" id="rainSound" loop></audio>
 <audio src="carrain.mp3" id="rainSound2" loop></audio>
@@ -208,34 +157,12 @@
 <audio src="bug.mp3" id="bugSound" loop></audio>
 <audio src="radioreal.mp3" id="radioSound" loop></audio>
 <audio src="eagle.mp3" id="eagleSound" loop></audio>
-
 <script>
 
-
-frogsound.volume = 0.2;
-
-rainSound.volume = 0.5;
-rainSound2.volume = 0.9;
-
-sunSound.volume = 0.9;
-
-engineSound.volume = 1.0;
-
-bugSound.volume = 1.0;
-
-radioSound.volume = 0.2;
-
-eagleSound.volume = 0.1;
-
-
-
-startButton.onclick = function(){
-	startScreen.style.display = "none";
-	rainSound.play();
-	rainSound2.play();
-};
+alert("차박 에이에스엠알에 오신 것을 환영합니다!");
 
 let frogOn = "no";
+
 frog.onclick = function(){
 	if(frogOn == "no"){
 		frog.src = "cryfrog.png";
@@ -244,10 +171,12 @@ frog.onclick = function(){
 	}else if(frogOn == "yes"){
 		frog.src = "frog.png";
 		frogsound.pause();
-		frogsound.currentTime = 0;
 		frogOn = "no";
 	}
+
 };
+
+
 
 let bugOn = "no";
 bug.onclick = function(){
@@ -258,11 +187,11 @@ bug.onclick = function(){
 	}else if(bugOn == "yes"){
 		bug.src = "bugoff.png";
 		bugSound.pause();
-		bugSound.currentTime = 0;
 		bugOn = "no";
 	}
 
 };
+
 
 let eagleOn = "no";
 eagle.onclick = function(){
@@ -273,10 +202,11 @@ eagle.onclick = function(){
 	}else if(eagleOn == "yes"){
 		eagle.src = "eagle.png";
 		eagleSound.pause();
-		eagleSound.currentTime = 0;
 		eagleOn = "no";
 	}
 };
+
+
 
 let sunny = "no";
 sunButton.onclick = function(){
@@ -290,9 +220,8 @@ sunButton.onclick = function(){
 		sunButton.style.background = "red";
 		sunny = "yes";
 	}else if(sunny == "yes"){
-		sun.style.opacity = "0.35";
+		sun.style.opacity = "0";
 		sunSound.pause();
-		sunSound.currentTime = 0;
 		rainWindow.style.opacity = "0.7";
 		rainSound.play();
 		rainSound2.play();
@@ -302,33 +231,31 @@ sunButton.onclick = function(){
 	}
 };
 
+
+
 let engineOn = "no";
+
 engineButton.onclick = function(){
 	if(engineOn == "no"){
 		engineSound.play();
 		engineButton.style.background = "green";
 		engineOn = "yes";
-
 	}else if(engineOn == "yes"){
 		engineSound.pause();
-		engineSound.currentTime = 0;
 		engineButton.style.background = "white";
 		engineOn = "no";
 	}
 };
 
+
+
 let radioOn = "no";
-let radioStarted = "no";
+
 radioButton.onclick = function(){
 	if(radioOn == "no"){
-		if(radioStarted == "no"){
-			radioSound.currentTime = 15;
-			radioStarted = "yes";
-		}
 		radioSound.play();
 		radioButton.style.background = "yellow";
 		radioOn = "yes";
-
 	}else if(radioOn == "yes"){
 		radioSound.pause();
 		radioButton.style.background = "white";
