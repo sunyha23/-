@@ -20,6 +20,14 @@
 	height:100vh;
 }
 
+#title{
+	position:absolute;
+	top:20px;
+	left:20px;
+	color:white;
+	font-size:24px;
+}
+	
 #lake{
 	position:absolute;
 	top:0;
@@ -81,39 +89,6 @@
 	pointer-events:none;
 }
 
-
-#startScreen{
-	position:fixed;
-	top:0;
-	left:0;
-	width:100vw;
-	height:100vh;
-	z-index:300;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-}
-
-#startBox{
-	width:380px;
-	padding:30px;
-	background:white;
-	border:2px solid black;
-	text-align:center;
-	font-family:Arial, Helvetica, sans-serif;
-}
-
-#startBox p{
-	font-size:20px;
-	margin-bottom:30px;
-}
-
-#startButton{
-	padding:10px 24px;
-	background:white;
-	border:2px solid black;
-}
-
 #sunButton,
 #engineButton,
 #radioButton{
@@ -157,21 +132,8 @@
 
 <body>
 
-
-<div id="startScreen">
-
-	<div id="startBox">
-
-		<p>나만의 차박 에이에스엠알</p>
-
-		<button id="startButton">
-		시작
-		</button>
-
-	</div>
-
-</div>
-
+<div id="title">차박 에이에스엠알</div>
+	
 <div id="scene">
 
 	<img src="lake.png" id="lake">
@@ -227,13 +189,6 @@ radioSound.volume = 0.2;
 
 eagleSound.volume = 0.1;
 
-
-
-startButton.onclick = function(){
-	startScreen.style.display = "none";
-	rainSound.play();
-	rainSound2.play();
-};
 
 let frogOn = "no";
 frog.onclick = function(){
